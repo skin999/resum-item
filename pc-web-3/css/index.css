@@ -1,0 +1,40 @@
+/*header*/
+/*导航下拉列表*/
+#content ul li ul{
+ visibility: hidden;
+ }
+#content ul li:hover ul{
+visibility: visible;}
+#content ul li{
+    margin-left: 20px;
+}
+.font_size{
+    font-family: 微软雅黑;
+    font-size: 20px;
+    font-weight: lighter;
+}
+.bg{
+    background-color:rgba(242,242,242,1);
+}
+/*新闻资讯部分内边距*/
+.lbj{
+    padding: 40px 20px;
+}
+.tp_width{
+    width: 120px;
+    height: 70px;
+}
+/*每个板块的移上特效*/
+.hover:hover{
+       box-shadow:0 0 10px #ccc;
+       transition:0.5s;
+}
+.dh div img:hover{
+    cursor: pointer;
+    transform: rotate(360deg);
+    transition:transform 0.5s;
+
+}
+.dh div{
+    overflow: hidden;
+}

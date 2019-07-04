@@ -1,0 +1,237 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+video{
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    min-width: 100%;
+    min-height: 100%;
+    z-index:-9999;
+    /*���˾�*/
+    -webkit-filter: grayscale(100%);
+    filter:grayscale(100%);
+}
+@media (min-width: 768px) {
+    #black{
+        width:310px !important;height:300px;
+        background-color:rgba(0,0,0,0.3);
+        position: fixed;
+        left: 40%;
+        top: 30%;
+    }
+    #d1{
+        width:300px;height:300px;
+        color:#fff;
+        position: fixed;
+        left: 40%;
+        top: 30%;
+        margin: 5px;
+        z-index: 10000;
+    }
+    }
+@media (max-width: 576px) {
+    #black{
+        width: 300px;height: 300px;
+        margin: 0 auto;
+        /*text-align: center;*/
+        padding: 10px;
+        margin-top: 110px;
+    }
+    #d1{
+        width:90%;height:300px;
+        margin: 0 auto;
+        color:#fff;
+        margin: 10px;
+        z-index: 10000;
+
+    }
+}
+.my_tx{
+    width:70px;height:70px;
+    border-radius:50%;
+    position: fixed;
+    left:40%;
+    top:15%;
+}
+button{
+    width:100%;height:37px;
+    /*���䱳��ɫ*/
+    background:-webkit-linear-gradient(left, #0aae1d 0%, #0aa1ed 100%);
+    /*background:#0aae1d;*/
+    background-size:100% 100%;
+    border:0;
+    color:#fff;
+    border-radius:10px;
+}
+#uname{
+    background-image:url(../images/yhm.png);
+    background-repeat:no-repeat;
+    background-size:25px 25px;
+}
+#upwd{
+    background-image:url(../images/mm.png);
+    background-repeat:no-repeat;
+    background-size:25px 25px;
+}
+a{
+    font-size:6px;
+    color:#fff;
+    text-decoration:none;
+    margin-left: 35px;
+}
+a:link{color:#fff;}
+a:hover{color:red;}
+a:focus{background:orange;}
+#uname,#upwd{
+    width:100%;height:30px;
+    border:0;outline:0;
+    margin:10px 0px;
+    padding-left:10px;
+    box-sizing:border-box;
+    background-repeat:no-repeat;
+    background-position:95%;
+}
+.my_car{
+    font-size: 0.5rem;
+}
+.my_marquee{
+    font-size: 2rem !important;
+    z-index: 5;
+}
+@keyframes rotate{
+    0%{
+        transform:rotateX(0deg) rotateY(0deg);
+    }
+    100%{
+        transform:rotateX(360deg) rotateY(360deg);
+    }
+}
+@media(max-width: 576px) {
+    .d-sm-none {
+        display: none !important;
+    }
+}
+.wrap{
+    perspective: 1000px; /* ��ͼ��Ԫ�صľ��� �൱������� */
+    position: fixed;
+    left: 80%;
+    top: 60%;
+    z-index: 1;
+}
+.cube{
+    width:200px;
+    height:200px;
+    position:relative;
+    color:#fff;
+    font-size:36px;
+    font-weight:bold;
+    text-align:center;
+    line-height:200px;
+    transform-style:preserve-3d; /* Ĭ��flat 2D */
+    transform:rotateX(-30deg) rotateY(-70deg);
+    animation:rotate 20s infinite linear; /*����ʱ�� ���Ŵ���Ϊѭ�� ����Ч��Ϊ���� */
+}
+.cube > div{
+    width:100%;
+    height:100%;
+    border:1px solid #fff;
+    position:absolute;
+    background-color:#333;
+    opacity:.6;
+    transition:transform 0.4s ease-in;
+}
+.cube .out-front{
+    transform: translateZ(100px);
+}
+.cube .out-back{
+    transform: translateZ(-100px) rotateY(180deg);
+}
+.cube .out-left{
+    transform: translateX(-100px) rotateY(-90deg);
+}
+.cube .out-right{
+    transform: translateX(100px) rotateY(90deg);
+}
+.cube .out-top{
+    transform: translateY(-100px) rotateX(90deg);
+}
+.cube .out-bottom{
+    transform: translateY(100px) rotateX(-90deg);
+}
+.wrap:hover .out-front{
+    transform: translateZ(200px);
+}
+.wrap:hover .out-back{
+    transform: translateZ(-200px) rotateY(180deg);
+}
+.wrap:hover .out-left{
+    transform: translateX(-200px) rotateY(-90deg);
+}
+.wrap:hover .out-right{
+    transform: translateX(200px) rotateY(90deg);
+}
+.wrap:hover .out-top{
+    transform: translateY(-200px) rotateX(90deg);
+}
+.wrap:hover .out-bottom{
+    transform: translateY(200px) rotateX(-90deg);
+}
+.cube>div>img{
+    width: 200px;
+    height: 200px;
+}
+
+.button{
+	color:#fff;
+	background:#007eff;border: solid 1px #007eff;
+}
+.button:hover{
+	background:#f00;
+	color:#fff;
+}
+body{ background-color: #E8E8E8; }
+input{outline: none; }
+.my_a_img{
+    margin-left: 33px;
+
+}
+.my_a_img1{
+    width:40px;height:40px;
+    border-radius: 50% ;
+    margin-bottom: 5px;
+    z-index:10001;
+}
+.alert{
+	border:1px solid #a33;
+	color:#922;
+	background:#fee;
+	padding:10px;
+	position:fixed;
+    overflow:hidden;
+    z-index: 20000;
+}
+.alert>.close{
+	float:right;
+	font-weight:bold;
+	opacity:.5;
+	cursor:pointer;
+}
+.alert>.close:hover{opacity:1}
+/*定义淡入淡出动画的初始状态,常驻元素*/
+.fade{/*试着修改起始状态，可尝试不同对话框显示的效果*/
+	top:50%; left:50%;
+	width:350px; height:200px;
+	margin-left:-185px; margin-top:-60px;
+	opacity:0;
+    transition:all 1s linear;
+    z-index: 20000;
+}
+/*定义淡入淡出动画的结束状态*/
+.in{ 
+	top:50%; left:50%;
+	width:350px; height:100px;
+	margin-left:-185px; margin-top:-60px;
+	opacity:1;
+}

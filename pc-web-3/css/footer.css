@@ -1,0 +1,8 @@
+*{margin: 0;padding: 0;}
+.nav-item a{color:#787777;font-size: 10px;display: block;transform:translate(0,0);
+transition:all 0.8s ease-in 0.1s;}
+.nav .nav-item a:hover{color:orange;}
+.nav .my_small{font: 20px bold;color:black;border-bottom: 2px red;}
+.nav .li{border-bottom: 2px solid #3d4857;text-align: center}
+.footer{margin-top: 30px; background: #efefef;padding-top:20px;}
+#ss{background:#efefef;width:100%;color: black;font-size: 12px;height:50px;margin-top: 30px;}

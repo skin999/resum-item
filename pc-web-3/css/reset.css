@@ -1,0 +1,51 @@
+﻿@charset "utf-8";
+
+/*-- 全局reset
+-------------------------------------------*/
+
+html, body, div, ul, ol, li, a, img {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+    transition: background-color .2s ease-in-out;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a.special,
+.special a {
+    color: #1eb37b;
+}
+
+a.special:hover,
+.special a:hover {
+    color: #1eb37b;
+    text-decoration: none;
+}
+
+
+
+
+
+
+

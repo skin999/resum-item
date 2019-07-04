@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/main.css" />
+    <!--图标调用-->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/head.css"/>
+    <style>
+        .carousel-control-next,
+        .carousel-control-prev{
+            width: 4%;height: 20%;
+            background: rgba(0,0,0,1);
+            top: 40%;
+            border-radius: 0.2rem;
+        }
+        .carousel-indicators li{
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #fff;
+        }
+        .carousel-indicators .active{
+            background-color: #0aa1ed;
+        }
+        .x{
+            width: 100px;
+            height: 180px;
+        }
+
+        /*图片遮罩部分引入
+        <!--主要样式-->
+            .demo{padding: 2em 0;}*/
+        :root{
+            --color_1: #fff;
+            --main-color: #1dd1a1;
+        }
+        .box{
+            font-family: 'Niramit', sans-serif;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .box:before,
+        .box:after,
+        .box-content:before,
+        .box-content:after{
+            content: '';
+            background: linear-gradient(transparent,rgba(0,0,0,0.9));
+            height: 100%;
+            width: 25%;
+            transform: translateY(-100%);
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1;
+            transition: all 0.3s;
+        }
+        .box:hover:before,
+        .box:hover:after,
+        .box:hover .box-content:before,
+        .box:hover .box-content:after{
+            transform: translateY(0);
+        }
+        .box:after{ left: 25%; }
+        .box .box-content:before{ left: 50%; }
+        .box .box-content:after{ left: 75%; }
+        .box:hover:before{ transition-delay: 0.225s; }
+        .box:hover:after{ transition-delay: 0.075s; }
+        .box:hover .box-content:before{ transition-delay: 0.15s; }
+        .box:hover .box-content:after{ transition-delay: 0s; }
+        .box img{
+            width: 100%;
+            height: auto;
+            transition: all 0.3s ease 0s;
+        }
+        .box:hover img{ filter: grayscale(100%); }
+        .box .box-content{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            transition: all 0.2s;
+        }
+        .content{
+            width: 100%;
+            padding: 7px 0;
+            opacity: 0;
+            position: absolute;
+            left: 0;
+            bottom: -30px;
+            z-index: 2;
+            transition: all 0.3s ease 0.1s;
+        }
+        .box:hover .content{
+            opacity: 1;
+            bottom: 5px;
+        }
+        .box .title{
+            color:#fff;
+            font-size: 25px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin: 0;
+        }
+        .box .post{
+            color: var(--main-color);
+            font-size: 16px;
+            font-style: italic;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .box .icon{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            transform: translateX(-50%);
+            position: absolute;
+            top: 15px;
+            right: -10px;
+            z-index: 5;
+            transition: all 0.5s ease 0.3s;
+        }
+        .box .icon li{
+            opacity: 0;
+            transform: scale(0) rotate(360deg);
+            transition: all 400ms;
+        }
+        .box:hover .icon li{
+            opacity: 1;
+            transform: scale(1) rotate(0);
+        }
+        .box .icon li a{
+            color: var(--color_1);
+            background-color: var(--main-color);
+            font-size: 20px;
+            line-height: 40px;
+            height: 40px;
+            width: 40px;
+            margin-bottom: 10px;
+            border-radius: 50%;
+            display: block;
+            position: relative;
+            transition: all 0.4s;
+        }
+        .box .icon li a:hover{
+            text-decoration: none;
+            color: var(--main-color);
+            background-color: var(--color_1);
+            border-radius: 0 20px 0 20px;
+        }
+        @media only screen and (max-width:990px){
+            .box{ margin-bottom: 30px; }
+        }
+        @media only screen and (max-width:479px){
+            .box .title{ font-size: 20px; }
+        }
+        #demo>div>div>img{
+            width: 1110px;
+            height: 624px;
+        }
+    </style>
+</head>
+<body>
+     <!--head部分-->
+     <!-- 导航 -->
+    <header class="header p-0 m-0 mb-3">
+        <div class="container">
+            <div class="navbar navbar-expand-lg dh_bg navbar-dark rounded p-0 m-0">
+        <!--1.1不隐藏的标题-->
+                <a href="#"><img class="my_img_logo" src="../img/logo.png" alt=""/></a>
+                <a href="#" class="navbar-brand ml-lg-4 text-dark">跑车商城</a>
+                <!--1.2小屏幕显示的按钮-->
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#content">
+                    <!--1.2.1画三条线-->
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!--1.3折叠的导航栏-->
+                <div id="content" class="collapse navbar-collapse ml-lg-5">
+                    <ul class="navbar-nav align-content-center justify-content-around">
+                        <li class="nav-item"><a class="nav-link text-dark" href="index.html">首页</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" href="post.html">商品详情页</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" href="car_lj.html">汽车零件页</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" href="car_lj.html">我们的服务</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" href="car_lj.html">新闻资讯</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" href="car_lj.html">产品展示</a></li>
+                        <li class="nav-item"><a class="nav-link my_left text-dark" href="index.html">联系我们</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+ 
+     <div class="container" >
+     <!--主体部分-->
+         <!--轮播部分-->
+         <div id="demo" class="carousel" data-ride="carousel">
+             <!--图片部分-->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="w-100" src="../img/lb1.jpg" alt="兰博基尼"/>
+                </div>
+                <div class="carousel-item ">
+                    <img class="w-100" src="../img/lb2.jpg" alt=""/>
+                </div>
+                <div class="carousel-item ">
+                    <img class="w-100" src="../img/3.jpg" alt=""/>
+                </div>
+                <div class="carousel-item ">
+                    <img class="w-100" src="../img/4.jpg" alt=""/>
+                </div>
+            </div>
+            <!--左右箭头-->
+             <a data-slide="prev"  href="#demo" class="carousel-control-prev">
+                 <span class="carousel-control-prev-icon"></span>
+             </a>
+             <a data-slide="next" href="#demo" class="carousel-control-next">
+                 <span class="carousel-control-next-icon"></span>
+             </a>
+             <!--轮播指示器-->
+             <ul class="carousel-indicators">
+                 <li class="active" data-slide-to="0" data-target="#demo"></li>
+                 <li  data-slide-to="1" data-target="#demo"></li>
+                 <li  data-slide-to="2" data-target="#demo"></li>
+                 <li  data-slide-to="3" data-target="#demo"></li>
+             </ul>
+         </div>
+         <!--产品展示-->
+         <div class="bg">
+             <div class="mt-5 mb-5 ml-2 mr-2">
+                  <!--字体部分-->
+                  <div>
+                      <p>
+                          <span style="font-size: 30px; color: rgb(255,168,0)">
+                              <strong>|</strong>
+                          </span>
+                          <span class="mr-2" style="font-size: 24px;">&nbsp;产品展示</span>
+                      </p>
+                  </div>
+                  <!--图片部分:8张-->
+                  <div class="row m-0 dh">
+                      <div class="col-lg-3 col-sm-6 pl-0  mt-2 mb-2">
+                          <!--引入部分-->
+                          <div class="box">
+                              <img class="w-100" src="../img/1.jpg" alt=""/>
+                              <div class="box-content">
+                                  <div class="content">
+                                      <span class="post">Web developer</span>
+                                      <h3 class="title">Steve Thomas</h3>
+                                  </div>
+                                  <ul class="icon">
+                                      <li><a href="#"><i class="fa fa-search"></i></a></li>
+                                      <li><a href="#"><i class="fa fa-link"></i></a></li>
+                                  </ul>
+                              </div>
+                          </div>
+
+                      </div>
+                      <div class="col-lg-3 col-sm-6 pl-0  mt-2 mb-2">
+
+                          <div class="box">
+                              <img class="w-100" src="../img/2.jpg" alt=""/>
+                              <div class="box-content">
+                                  <div class="content">
+                                      <span class="post">Web developer</span>
+                                      <h3 class="title">Steve Thomas</h3>
+                                  </div>
+                                  <ul class="icon">
+                                      <li><a href="#"><i class="fa fa-search"></i></a></li>
+                                      <li><a href="#"><i class="fa fa-link"></i></a></li>
+                                  </ul>
+                              </div>
+                          </div>
+
+                      </div>
+
+                      <div class="col-lg-3 col-sm-6 pl-0  mt-2 mb-2">
+
+                          <div class="box">
+                              <img class="w-100" src="../img/3.jpg" alt=""/>
+                              <div class="box-content">
+                                  <div class="content">
+                                      <span class="post">Web developer</span>
+                                      <h3 class="title">Steve Thomas</h3>
+                                  </div>
+                                  <ul class="icon">
+                                      <li><a href="#"><i class="fa fa-search"></i></a></li>
+                                      <li><a href="#"><i class="fa fa-link"></i></a></li>
+                                  </ul>
+                              </div>
+                          </div>
+
+                      </div>
+
+                      <div class="col-lg-3 col-sm-6 pl-0 mt-2 mb-2">
+
+                          <div class="box">
+                              <img class="w-100" src="../img/4.jpg" alt=""/>
+                              <div class="box-content">
+                                  <div class="content">
+                                      <span class="post">Web developer</span>
+                                      <h3 class="title">Steve Thomas</h3>
+                                  </div>
+                                  <ul class="icon">
+                                      <li><a href="#"><i class="fa fa-search"></i></a></li>
+                                      <li><a href="#"><i class="fa fa-link"></i></a></li>
+                                  </ul>
+                              </div>
+                          </div>
+
+                      </div>
+
+                      <div class="col-lg-3 col-sm-6 pl-0  mt-2 mb-2 ">
+
+                          <div class="box">
+                              <img class="w-100 " src="../img/5.jpg" alt=""/>
+                              <div class="box-content">
+                                  <div class="content">
+                                      <span class="post">Web developer</span>
+                                      <h3 class="title">Steve Thomas</h3>
+                                  </div>
+                                  <ul class="icon">
+                                      <li><a href="#"><i class="fa fa-search"></i></a></li>
+                                      <li><a href="#"><i class="fa fa-link"></i></a></li>
+                                  </ul>
+                              </div>
+                          </div>
+
+                      </div>
+
+                      <div class="col-lg-3 col-sm-6 pl-0  mt-2 mb-2">
+
+                          <div class="box">
+                              <img class="w-100" src="../img/6.jpg" alt=""/>
+                              <div class="box-content">
+                                  <div class="content">
+                                      <span class="post">Web developer</span>
+                                      <h3 class="title">Steve Thomas</h3>
+                                  </div>
+                                  <ul class="icon">
+                                      <li><a href="#"><i class="fa fa-search"></i></a></li>
+                                      <li><a href="#"><i class="fa fa-link"></i></a></li>
+                                  </ul>
+                              </div>
+                          </div>
+
+                      </div>
+
+                      <div class="col-lg-3 col-sm-6 pl-0  mt-2 mb-2">
+
+                          <div class="box">
+                              <img class="w-100" src="../img/7.jpg" alt=""/>
+                              <div class="box-content">
+                                  <div class="content">
+                                      <span class="post">Web developer</span>
+                                      <h3 class="title">Steve Thomas</h3>
+                                  </div>
+                                  <ul class="icon">
+                                      <li><a href="#"><i class="fa fa-search"></i></a></li>
+                                      <li><a href="#"><i class="fa fa-link"></i></a></li>
+                                  </ul>
+                              </div>
+                          </div>
+
+                      </div>
+
+                      <div class="col-lg-3 col-sm-6 pl-0  mt-2 mb-2">
+
+                          <div class="box">
+                              <img class="w-100" src="../img/8.jpg" alt=""/>
+                              <div class="box-content">
+                                  <div class="content">
+                                      <span class="post">Web developer</span>
+                                      <h3 class="title">Steve Thomas</h3>
+                                  </div>
+                                  <ul class="icon">
+                                      <li><a href="#"><i class="fa fa-search"></i></a></li>
+                                      <li><a href="#"><i class="fa fa-link"></i></a></li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+
+                  </div>
+              </div>
+         </div>
+         <!--新闻资讯-->
+         <div class="">
+             <div class="ml-1 mr-2 ">
+                 <!--字体部分-->
+                 <div>
+                     <p>
+                     <span style="font-size: 30px; color: rgb(255,168,0)">
+                              <strong>|</strong>
+                     </span>
+                     <span class="mr-2" style="font-size: 24px;">
+                         &nbsp;新闻资讯
+                     </span>
+                     </p>
+                 </div>
+                 <!--内容部分-->
+                 <div class="row m-0">
+                     <!--第一个板块-->
+                     <div class="col-md-6 col-sm-12  pr-md-2 mt-sm-2">
+                         <div class="pr-md-1">
+                             <div class=" row lbj bg hover">
+                                 <!--图片部分-->
+                                 <div class="col-5">
+                                     <div class="text-center">
+                                         <img class="tp_width" src="../img/w2000.jpg" alt=""/>
+                                     </div>
+                                 </div>
+                                 <!--文字部分-->
+                                 <div class="col-7">
+                                     <div class="p-0">
+                                         <h5>为什么汽车的保养费用变得很贵？</h5>
+                                     </div>
+                                     <p class="font-weight-light mt-1">
+                                         这是新闻的的摘要内容，这是新闻的的摘要内容，
+                                         这是新闻的的摘要内容....</p>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <!--第二个板块-->
+                     <div class="col-md-6 col-sm-12 pr-md-2 mt-sm-2">
+                         <div class=" pl-md-2">
+                             <div class=" row lbj bg hover ">
+                                 <!--图片部分-->
+                                 <div class="col-5 ">
+                                     <div class="text-center">
+                                         <img class="tp_width" src="../img/w2001.jpg" alt=""/>
+                                     </div>
+                                 </div>
+                                 <!--文字部分-->
+                                 <div class="col-7 ">
+                                     <h5>你认为你真的选择了适合你的车么？</h5>
+                                     <p class="font-weight-light mt-1">
+                                         这是新闻的的摘要内容，这是新闻的的摘要内容，
+                                         这是新闻的的摘要内容....</p>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <!--第三个板块-->
+                     <div class="col-md-6 col-sm-12 mt-md-3 pr-md-2 mt-sm-2">
+                         <div class="pr-md-1">
+                             <div class=" row lbj bg hover ">
+                                 <!--图片部分-->
+                                 <div class="col-5">
+                                     <div class="text-center">
+                                         <img class="tp_width" src="../img/w2002.jpg" alt=""/>
+                                     </div>
+                                 </div>
+                                 <!--文字部分-->
+                                 <div class="col-7">
+                                     <h5>你认为你真的选择了适合你的车么？</h5>
+                                     <p class="font-weight-light mt-1">
+                                         这是新闻的的摘要内容，这是新闻的的摘要内容，
+                                         这是新闻的的摘要内容....</p>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <!--第四个板块-->
+                     <div class="col-md-6 col-sm-12 mt-md-3 pr-md-2 mt-sm-2">
+                         <div class="pl-md-2">
+                             <div class=" row lbj bg hover">
+                                 <!--图片部分-->
+                                 <div class="col-5">
+                                     <div class="text-center">
+                                         <img class="tp_width" src="../img/w2003.jpg" alt=""/>
+                                     </div>
+                                 </div>
+                                 <!--文字部分-->
+                                 <div class="col-7">
+                                     <h5>停车费用这么贵，你该把车停在那？</h5>
+                                     <p class="font-weight-light mt-1">
+                                         这是新闻的的摘要内容，这是新闻的的摘要内容，
+                                         这是新闻的的摘要内容....</p>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+
+
+
+
+         <div class="ag7-main w-100">
+             <div class="ag7-bannerslide">
+                 <ul class="slidebox">
+                     <li><a href="#"><img class="w-100 h-100" src="../img/pc1.jpg"></a></li>
+                     <li><a href="#"><img class="w-100 h-100" src="../img/2.jpg"></a></li>
+                     <li><a href="#"><img class="w-100 h-100" src="../img/3.jpg"></a></li>
+                     <li><a href="#"><img class="w-100 h-100" src="../img/4.jpg"></a></li>
+                 </ul>
+                 <div class="slideinfo">
+                     <div class="slidetitle">
+                         <h2></h2>
+                     </div>
+                     <div class="slidelist">
+                         <ul>
+                             <li data-h1="马力媲美兰博基尼,仅配6缸发动机,世界仅50台,还是日系车!...
+                                      896x470">兰博基尼系列</li>
+                             <li data-h1="宝马x500系列,6缸发动机,世界仅50台,百米提速仅需0.9s!...">宝马系列</li>
+                             <li data-h1="法拉利3000幻影,法国进口,全球限量5款!...">法拉利系列</li>
+                             <li data-h1="雷克萨斯s600,最大马力480匹!...">雷克萨斯系列</li>
+                         </ul>
+                         <span class="mask"></span>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <footer>
+                <iframe src="footer.html" frameborder="0" width="100%" height="500px"></iframe>
+        </footer>
+         <script src="../js/jquery-1.10.2.js"></script>
+         <script type="text/javascript" src="../js/jquery.easing.min.js"></script>
+         <script type="text/javascript" src="../js/main.js"></script>
+     </div>
+     <div style="height: 2000px;">
+            <!--填充高度-->
+        </div>
+        
+        <div class="side">
+            <ul>
+                <li id="qqonline"><i class="bgs1"></i>QQ咨询</li>
+                <li class="shangqiao">
+                    <a href="javascript:;" rel="nofollow">
+                        <div><i class="bgs2"></i>在线咨询</div>
+                    </a>
+                </li>
+                <li class="sideewm"><i class="bgs3"></i>官方微信
+                    <div class="ewBox son"></div>
+                </li>
+                <li class="sideetel"><i class="bgs4"></i>联系电话
+                    <div class="telBox son">
+                        <dd class="bgs1"><span>座机</span>023-88888888</dd>
+                        <dd class="bgs2"><span>手机</span>12345678910</dd>
+                    </div>
+                </li>
+                <li id="yuyueshow"><i class="bgs5"></i>预约上门</li>
+                <li class="sidetop" onClick="goTop()"><i class="bgs6">返回顶部</li>
+            </ul>
+        </div>
+        
+        <script src="../js/jquery-1.10.2.js" type="text/javascript" charset="utf-8"></script>
+        <script>
+            function goTop() {
+                $('html,body').animate({
+                    scrollTop: 0
+                }, 500)
+            }
+        </script>
+</body>
+</html>
